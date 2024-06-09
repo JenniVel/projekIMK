@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projek/screens/awalan/landing_screen.dart';
 import 'package:projek/screens/home/home_screen.dart';
+import 'package:projek/tema/constant.dart';
+import 'package:projek/tema/theme_app.dart';
 import 'package:projek/tema/theme_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:projek/tema/light_theme.dart';
@@ -12,25 +14,44 @@ import 'package:projek/tema/theme_notifier.dart';
 import 'package:projek/screens/awalan/daftar_screen.dart';
 import 'package:projek/screens/awalan/masuk_screen.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:flutter/foundation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
-    await FlutterConfig.loadEnvVariables();
-  }
-  runApp(const MainApp());
-}
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLightTheme = prefs.getBool(SPref.isLight) ?? true;
 
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp();
+  }
+   runApp(AppStart(
+    isLightTheme: isLightTheme,
+  ));
+}
+class AppStart extends StatelessWidget {
+  const AppStart({super.key, required this.isLightTheme});
+  final bool isLightTheme;
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider(isLightTheme: isLightTheme),
+        ),
+      ],
+      child: const MainApp(),
+    );
+  }
+}
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+
     return ChangeNotifierProvider(
       create: (_) => ThemeNotifier(),
       child: Consumer<ThemeNotifier>(

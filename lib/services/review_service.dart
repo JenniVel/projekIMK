@@ -1,27 +1,24 @@
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as path;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:projek/models/review.dart';
-import 'package:projek/models/wisata.dart';
 
 class ReviewService {
   static final FirebaseFirestore _database = FirebaseFirestore.instance;
   static final CollectionReference _reviewsCollection =
       _database.collection('reviews');
-  static final CollectionReference _usersCollection =
-      _database.collection('Users'); 
-  Wisata? wisata;
+
   static final FirebaseStorage _storage = FirebaseStorage.instance;
 
   static Future<String?> uploadImage(File imageFile) async {
+    //klo upload berhasil maka ambil url dri storage, klo idk return null
     try {
       String fileName = path.basename(imageFile.path);
       Reference ref = _storage.ref().child('images/$fileName');
 
-      UploadTask uploadTask;
+      UploadTask uploadTask; //upload ke ref yg dituju
       if (kIsWeb) {
         uploadTask = ref.putData(await imageFile.readAsBytes());
       } else {
@@ -36,17 +33,7 @@ class ReviewService {
   }
 
   static Future<void> addReview(Review reviews) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
-      throw Exception("User not logged in");
-    }
-    final userId = user.uid;
-    DocumentSnapshot userDoc = await _usersCollection.doc(userId).get();
-    String userName = userDoc['name'] ?? 'Anonymous'; 
-
     Map<String, dynamic> newReview = {
-      'userId': userId,
-      'userName': userName,
       'title': reviews.title,
       'comment': reviews.comment,
       'image_url': reviews.imageUrl,
@@ -61,17 +48,7 @@ class ReviewService {
   }
 
   static Future<void> updateReview(Review reviews) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
-      throw Exception("User not logged in");
-    }
-    final userId = user.uid;
-    DocumentSnapshot userDoc = await _usersCollection.doc(userId).get();
-    String userName = userDoc['name'] ?? 'Anonymous';
-
     Map<String, dynamic> updatedReview = {
-      'userId': userId,
-      'userName': userName, 
       'title': reviews.title,
       'comment': reviews.comment,
       'image_url': reviews.imageUrl,
@@ -115,7 +92,6 @@ class ReviewService {
           updatedAt: data['updated_at'] != null
               ? data['updated_at'] as Timestamp
               : null,
-          userName: data['userName'],
         );
       }).toList();
     });
@@ -124,23 +100,23 @@ class ReviewService {
   static Future<Map<String, double>> getAverageRatings() async {
     try {
       QuerySnapshot reviewSnapshot = await _reviewsCollection.get();
-      Map<String, List<double>> destinationsRating = {};
+      Map<String, List<double>> songRatings = {};
 
       for (var doc in reviewSnapshot.docs) {
-        String destinationsId = doc['destinationsId'];
+        String songId = doc['songId']; // Pastikan review menyimpan songId
         double rating = doc['rating'];
 
-        if (destinationsRating.containsKey(destinationsId)) {
-          destinationsRating[destinationsId]!.add(rating);
+        if (songRatings.containsKey(songId)) {
+          songRatings[songId]!.add(rating);
         } else {
-          destinationsRating[destinationsId] = [rating];
+          songRatings[songId] = [rating];
         }
       }
 
       Map<String, double> averageRatings = {};
-      destinationsRating.forEach((destinationsId, ratings) {
+      songRatings.forEach((songId, ratings) {
         double average = ratings.reduce((a, b) => a + b) / ratings.length;
-        averageRatings[destinationsId] = average;
+        averageRatings[songId] = average;
       });
 
       return averageRatings;

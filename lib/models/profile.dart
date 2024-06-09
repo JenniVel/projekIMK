@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Profiles {
   String? id;
-  String? image_url;
+  String? imageUrl;
   Timestamp? createdAt;
   Timestamp? updatedAt;
 
   Profiles({
     this.id,
-    this.image_url,
+    this.imageUrl,
     this.createdAt,
     this.updatedAt,
   });
@@ -17,7 +17,7 @@ class Profiles {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Profiles(
       id: doc.id,
-      image_url: data['image_url'],
+      imageUrl: data['image_url'],
       createdAt: data['created_at'] as Timestamp,
       updatedAt: data['updated_at'] as Timestamp,
     );
@@ -25,7 +25,7 @@ class Profiles {
 
   Map<String, dynamic> toDocument() {
     return {
-      'image_url': image_url,
+      'image_url': imageUrl,
       'created_at': createdAt,
       'updated_at': updatedAt,
     };

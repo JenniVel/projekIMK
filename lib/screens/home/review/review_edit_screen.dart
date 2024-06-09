@@ -1,14 +1,12 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projek/models/review.dart';
 import 'package:projek/screens/home/review/pickLocation.dart';
 import 'package:projek/services/review_service.dart';
+import 'package:projek/tema/theme_app.dart';
 import 'package:provider/provider.dart';
 
 class ReviewEditScreen extends StatefulWidget {
@@ -67,10 +65,18 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: themeProvider.themeMode().gradientColors!,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
           child: SingleChildScrollView(
@@ -83,6 +89,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                     IconButton(
                       icon: Icon(
                         Icons.arrow_back,
+                        color: themeProvider.themeMode().switchColor!,
                         size: 24,
                       ),
                       onPressed: () {
@@ -107,6 +114,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                 ),
                 Divider(
                   thickness: 3,
+                  color: themeProvider.themeMode().switchColor!,
                 ),
                 SizedBox(
                   height: 10,
@@ -114,6 +122,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
+                    color: themeProvider.themeMode().switchBgColor!,
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     ),
@@ -129,6 +138,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                           style: TextStyle(
                             fontFamily: 'Bayon',
                             fontSize: 20,
+                            color: themeProvider.themeMode().thumbColor!,
                           ),
                         ),
                         TextField(
@@ -136,6 +146,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                           style: TextStyle(
                             fontFamily: 'Basic',
                             fontSize: 16,
+                            color: themeProvider.themeMode().thumbColor!,
                           ),
                         ),
                         Padding(
@@ -146,6 +157,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                             style: TextStyle(
                               fontFamily: 'Bayon',
                               fontSize: 20,
+                              color: themeProvider.themeMode().thumbColor!,
                             ),
                           ),
                         ),
@@ -191,6 +203,8 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                                   onPressed: _pickImage,
                                   icon: Icon(
                                     Icons.add_a_photo,
+                                    color:
+                                        themeProvider.themeMode().thumbColor!,
                                   ),
                                 ),
                               ),
@@ -205,6 +219,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                             style: TextStyle(
                               fontFamily: 'Bayon',
                               fontSize: 20,
+                              color: themeProvider.themeMode().thumbColor!,
                             ),
                           ),
                         ),
@@ -213,6 +228,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                           style: TextStyle(
                             fontFamily: 'Basic',
                             fontSize: 16,
+                            color: themeProvider.themeMode().thumbColor!,
                           ),
                         ),
                         Padding(
@@ -225,6 +241,7 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                                 style: TextStyle(
                                   fontFamily: 'Bayon',
                                   fontSize: 20,
+                                  color: themeProvider.themeMode().thumbColor!,
                                 ),
                               ),
                               RatingBar.builder(
@@ -238,6 +255,8 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                                   Icons.star,
                                   color: Color.fromARGB(255, 235, 177, 0),
                                 ),
+                                unratedColor:
+                                    themeProvider.themeMode().switchBgColor2!,
                                 onRatingUpdate: (rating) {
                                   setState(() {
                                     _rating = rating;
@@ -257,12 +276,14 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                                 style: TextStyle(
                                   fontFamily: 'Bayon',
                                   fontSize: 20,
+                                  color: themeProvider.themeMode().thumbColor!,
                                 ),
                               ),
                               IconButton(
                                 onPressed: _pickLocation,
                                 icon: Icon(
                                   Icons.location_pin,
+                                  color: themeProvider.themeMode().thumbColor!,
                                 ),
                               ),
                               Expanded(
@@ -271,6 +292,8 @@ class _ReviewEditScreenState extends State<ReviewEditScreen> {
                                   style: TextStyle(
                                     fontFamily: 'Readex Pro',
                                     fontSize: 10,
+                                    color:
+                                        themeProvider.themeMode().thumbColor!,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),

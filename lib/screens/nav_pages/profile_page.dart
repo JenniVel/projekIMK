@@ -10,7 +10,7 @@ import 'package:projek/tema/theme_screen.dart';
 import 'package:projek/services/profile_service.dart'; // Import the new service
 
 class ProfilPage extends StatefulWidget {
-  const ProfilPage({Key? key}) : super(key: key);
+  const ProfilPage({super.key});
 
   @override
   State<ProfilPage> createState() => _ProfilPageState();

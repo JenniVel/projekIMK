@@ -7,7 +7,7 @@ import 'package:projek/screens/home/review_admin.dart';
 import 'package:projek/screens/widgets/list_widget.dart';
 
 class DestinationListScreen extends StatefulWidget {
-  const DestinationListScreen({Key? key}) : super(key: key);
+  const DestinationListScreen({super.key});
 
   @override
   State<DestinationListScreen> createState() => _DestinationListScreenState();
@@ -64,26 +64,26 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
             const Text('Destinations'),
             Spacer(),
             IconButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ReviewAdmin()),
-    );
-  }, 
-  icon: const Icon(Icons.reviews),
-),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReviewAdmin()),
+                );
+              },
+              icon: const Icon(Icons.reviews),
+            ),
             DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: TextButton(
-                    onPressed: () => DestinationListScreen.confirmSignOut(context),
-                    child: Text(
-                      'Sign Out',
-                      style: TextStyle(color: Colors.redAccent),
-                    ),
-                  ),
+                onPressed: () => DestinationListScreen.confirmSignOut(context),
+                child: Text(
+                  'Sign Out',
+                  style: TextStyle(color: Colors.redAccent),
+                ),
+              ),
             ),
           ],
         ),
@@ -106,8 +106,6 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
     );
   }
 }
-
-
 
 void main() {
   runApp(MaterialApp(
