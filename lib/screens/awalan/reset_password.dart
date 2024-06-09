@@ -204,8 +204,7 @@ class ResetPage extends State<Reset> {
       await auth.sendPasswordResetEmail(email: _emailController.text.trim());
       displaySnackBar(context, 'Link sudah dikirim di email, cek email anda');
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const MasukScreen()));
+         Navigator.pop(context);
       });
     } catch (e) {
       String errorMessage = 'Terjadi kesalahan';
