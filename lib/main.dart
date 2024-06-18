@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projek/screens/awalan/landing_screen.dart';
 import 'package:projek/screens/home/home_screen.dart';
+import 'package:projek/screens/home/list_screen.dart';
 import 'package:projek/tema/constant.dart';
 import 'package:projek/tema/theme_app.dart';
 import 'package:projek/tema/theme_screen.dart';
@@ -13,10 +14,7 @@ import 'package:projek/tema/dark_theme.dart';
 import 'package:projek/tema/theme_notifier.dart';
 import 'package:projek/screens/awalan/daftar_screen.dart';
 import 'package:projek/screens/awalan/masuk_screen.dart';
-import 'package:flutter_config/flutter_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'firebase_options.dart';
-import 'package:flutter/foundation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +24,11 @@ void main() async {
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp();
   }
+  //  await FirebaseAppCheck.instance.activate(
+  //   webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
+  //   androidProvider: AndroidProvider.debug,
+  //  appleProvider: AppleProvider.appAttest,
+  // );
    runApp(AppStart(
     isLightTheme: isLightTheme,
   ));

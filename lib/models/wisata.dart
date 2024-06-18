@@ -12,6 +12,7 @@ class Wisata {
   String? imageUrl;
   Timestamp? createdAt;
   Timestamp? updatedAt;
+  double? rating; // Add this line
 
   Wisata( {
     this.id,
@@ -25,6 +26,7 @@ class Wisata {
     this.imageUrl,
     this.createdAt,
     this.updatedAt,
+    this.rating,
   });
 
   factory Wisata.fromDocument(DocumentSnapshot doc) {
@@ -41,6 +43,7 @@ class Wisata {
       createdAt: data['created_at'] as Timestamp,
       updatedAt: data['updated_at'] as Timestamp, 
       isFavorite: data['isFavorite'], 
+      rating: data['rating'] as double?,
     );
   }
 
@@ -55,7 +58,8 @@ class Wisata {
       'image_url': imageUrl,
       'created_at': createdAt,
       'updated_at': updatedAt,
-      'isFavorite': isFavorite
+      'isFavorite': isFavorite,
+      'rating': rating,
     };
   }
 
@@ -72,6 +76,7 @@ class Wisata {
       createdAt: data['created_at'] as Timestamp,
       updatedAt: data['updated_at'] as Timestamp, 
       isFavorite: data['isFavorite'], 
+      rating: data['rating'] as double?,
     );
   }
 
@@ -86,7 +91,8 @@ class Wisata {
       'image_url': imageUrl,
       'created_at': createdAt,
       'updated_at': updatedAt,
-      'isFavorite': isFavorite
+      'isFavorite': isFavorite,
+      'rating': rating,
     };
   }
 }

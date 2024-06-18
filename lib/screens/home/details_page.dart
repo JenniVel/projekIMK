@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projek/komponen/like_button.dart';
-import 'package:projek/screens/home/review/review_list_screen.dart';
 import 'package:projek/services/favorite_service.dart';
 import 'package:projek/screens/home/google_maps_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -329,16 +328,6 @@ class _DetailsPageState extends State<DetailsPage> {
         },
         icon: const Icon(Icons.arrow_back_ios, size: 30,),
       ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ReviewListScreen(destinationsTitle: wisata!.name);
-            }));
-          },
-          icon: const Icon(Icons.reviews, size: 30,),
-        ),
-      ],
     );
   }
 }

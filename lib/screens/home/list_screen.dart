@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projek/screens/awalan/masuk_screen.dart';
 import 'package:projek/screens/home/edit_screen.dart';
-import 'package:projek/screens/home/review_admin.dart';
-
 import 'package:projek/screens/widgets/list_widget.dart';
 
 class DestinationListScreen extends StatefulWidget {
@@ -63,15 +61,6 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
             const SizedBox(width: 10),
             const Text('Destinations'),
             Spacer(),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ReviewAdmin()),
-                );
-              },
-              icon: const Icon(Icons.reviews),
-            ),
             DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.white,

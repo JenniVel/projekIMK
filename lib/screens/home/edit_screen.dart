@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projek/models/wisata.dart';
@@ -29,8 +30,8 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final List<String> _kategori = ['pantai', 'gunung', 'danau', 'perkotaan'];
-
   String? _selectedKategori;
+   double? _rating = 0.0;
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
       _selectedKategori = widget.wisata!.kategori;
       _latitudeController.text = widget.wisata!.latitude.toString();
       _longitudeController.text = widget.wisata!.longitude.toString();
+      _rating = widget.wisata!.rating ?? 0;
     }
   }
 
@@ -161,6 +163,38 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                     );
                   }).toList(),
                 ),
+                 Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Rating : ',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontFamily: 'Bayon',
+                                  fontSize: 20,
+                                ),
+                              ),
+                              RatingBar.builder(
+                                initialRating: _rating ?? 0,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemSize: 20,
+                                itemBuilder: (context, _) => const Icon(
+                                  Icons.star,
+                                  color: Color.fromARGB(255, 235, 177, 0),
+                                ),
+                                onRatingUpdate: (rating) {
+                                  setState(() {
+                                    _rating = rating;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                 const Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Text(
@@ -284,6 +318,7 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                               longitude: longitude,
                               createdAt: widget.wisata?.createdAt,
                               isFavorite: false,
+                              rating: _rating,
                             );
 
                             if (widget.wisata == null) {
