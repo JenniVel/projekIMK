@@ -41,7 +41,7 @@ class DestinationListScreen extends StatefulWidget {
       await FirebaseAuth.instance.signOut();
       Future.delayed(Duration.zero, () {
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MasukScreen()),
+          MaterialPageRoute(builder: (context) => const MasukScreen()),
           (Route<dynamic> route) => false,
         );
       });
@@ -60,8 +60,7 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
           children: [
             const SizedBox(width: 10),
             const Text('Destinations'),
-            Spacer(),
-            
+            const Spacer(),
             DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -69,7 +68,7 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
               ),
               child: TextButton(
                 onPressed: () => DestinationListScreen.confirmSignOut(context),
-                child: Text(
+                child: const Text(
                   'Sign Out',
                   style: TextStyle(color: Colors.redAccent),
                 ),
@@ -77,7 +76,7 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
             ),
           ],
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: const DestinationList(),
@@ -90,18 +89,23 @@ class _DestinationListScreenState extends State<DestinationListScreen> {
               ));
         },
         tooltip: 'Add Destination',
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.blueAccent,
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).primaryColor,
+        ),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
     );
   }
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(
+    MaterialApp(
+      
     theme: ThemeData(
       primaryColor: Colors.blueAccent,
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         headline6: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         bodyText1: TextStyle(color: Colors.black),
       ),
@@ -111,6 +115,6 @@ void main() {
         ),
       ),
     ),
-    home: DestinationListScreen(),
+    home: const DestinationListScreen(),
   ));
 }

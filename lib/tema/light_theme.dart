@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = ThemeData(
   primaryColor: const Color(0xFF004B90), //text judul
+  fontFamily: 'Lato',
+
   brightness: Brightness.light,
-  scaffoldBackgroundColor: const Color.fromARGB(
-      255, 228, 239, 250), //background & container di masuk/dftr
+  scaffoldBackgroundColor:
+      Color.fromARGB(255, 202, 216, 230), //background & container di masuk/dftr
   appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFFAFD4F5), //di bg masuk/daftar bgian luar
     iconTheme: IconThemeData(color: Colors.white), // icon

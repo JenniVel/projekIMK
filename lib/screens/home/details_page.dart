@@ -1,7 +1,10 @@
+import 'dart:html';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projek/komponen/like_button.dart';
 import 'package:projek/services/favorite_service.dart';
@@ -31,6 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
   List<Marker> markers = [];
   Wisata? wisata;
   bool _isFavorite = false;
+  double _rating = 0.0;
 
   @override
   void initState() {
@@ -108,14 +112,14 @@ class _DetailsPageState extends State<DetailsPage> {
     // Check if the Wisata is in the user's favorites
     final favDocRef = FirebaseFirestore.instance
         .collection('Destination_favorites')
-        .doc(
-            '${widget.wisataId}'); // Use userId and wisataId combination as doc ID
+        .doc('${widget.wisataId}');
     final favDocSnapshot = await favDocRef.get();
 
     setState(() {
       wisata = fetchedWisata;
       _isFavorite = favDocSnapshot.exists;
       wisata!.isFavorite = _isFavorite;
+      // Get current rating
     });
   }
 
@@ -132,7 +136,7 @@ class _DetailsPageState extends State<DetailsPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Container(
-          margin: const EdgeInsets.all(8), 
+          margin: const EdgeInsets.all(8),
           decoration: const BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
@@ -248,26 +252,25 @@ class _DetailsPageState extends State<DetailsPage> {
                               delay: const Duration(milliseconds: 400),
                               child: Row(
                                 children: [
-                                  Wrap(
-                                    children: List.generate(5, (index) {
-                                      return Icon(
-                                        index < 4
-                                            ? Icons.star
-                                            : Icons.star_border,
-                                        color: index < 4
-                                            ? Colors.amber
-                                            : Colors.grey,
-                                      );
-                                    }),
+                                  RatingBarIndicator(
+                                    rating: _rating,
+                                    itemBuilder: (context, index) => const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    ),
+                                    itemCount: 5,
+                                    itemSize: 20.0,
+                                    direction: Axis.horizontal,
+                                    unratedColor: Colors.grey,
                                   ),
-                                  SizedBox(
-                                    width: size.width * 0.01,
-                                  ),
-                                  AppText(
-                                    text: "(4.0)",
-                                    size: 15,
-                                    color: Theme.of(context).primaryColor,
-                                    fontWeight: FontWeight.w400,
+                                  SizedBox(width: 10),
+                                  Text(
+                                    _rating.toString(),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Theme.of(context).primaryColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -306,7 +309,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                               ),
                                             );
                                           }
-                                        : null, // Disable the button if latitude or longitude is null
+                                        : null,
                                   ),
                                 ),
                               ],

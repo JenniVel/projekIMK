@@ -183,7 +183,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                 Text(
                                   'Nama Pengguna',
                                   style: TextStyle(
-                                    fontFamily: 'fonts/Inter-Black.ttf',
+                                    fontFamily: 'Itim',
                                     color: Theme.of(context).primaryColor,
                                     // color: Color(0xFF1284EE),
                                     fontWeight: FontWeight.bold,
@@ -197,7 +197,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                   decoration: InputDecoration(
                                     hintText: "Nama Pengguna",
                                     labelStyle: TextStyle(
-                                      fontFamily: 'fonts/Inter-Bold.ttf',
+                                      fontFamily: 'Itim',
                                       color: Theme.of(context).primaryColor,
                                       //  color: Theme.of(context).primaryColor,
                                     ),
@@ -218,7 +218,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                 Text(
                                   'Email',
                                   style: TextStyle(
-                                    fontFamily: 'fonts/Inter-Black.ttf',
+                                    fontFamily: 'Itim',
                                     // color: Color(0xFF1284EE),
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.bold,
@@ -232,7 +232,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                   decoration: InputDecoration(
                                     hintText: "Email",
                                     labelStyle: TextStyle(
-                                      fontFamily: 'fonts/Inter-Bold.ttf',
+                                      fontFamily: 'Itim',
                                       color: Theme.of(context).primaryColor,
                                     ),
                                     border: OutlineInputBorder(
@@ -252,7 +252,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                 Text(
                                   'Kata Sandi',
                                   style: TextStyle(
-                                    fontFamily: 'fonts/Inter-Black.ttf',
+                                    fontFamily: 'Itim',
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -268,7 +268,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                         ? _errorText
                                         : null,
                                     labelStyle: const TextStyle(
-                                      fontFamily: 'fonts/Inter-Bold.ttf',
+                                      fontFamily: 'Itim',
                                       color: Color(0xFF4583DF),
                                     ),
                                     border: OutlineInputBorder(
@@ -300,7 +300,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                 Text(
                                   'Konfirmasi Kata Sandi',
                                   style: TextStyle(
-                                    fontFamily: 'fonts/Inter-Black.ttf',
+                                    fontFamily: 'Itim',
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -316,7 +316,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                         ? _errorText
                                         : null,
                                     labelStyle: TextStyle(
-                                      fontFamily: 'fonts/Inter-Bold.ttf',
+                                      fontFamily: 'Itim',
                                       color: Theme.of(context).primaryColor,
                                     ),
                                     border: OutlineInputBorder(
@@ -359,6 +359,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                     Text(
                                       'Saya setuju dengan syarat dan ketentuan',
                                       style: TextStyle(
+                                          fontFamily: 'Itim',
                                           color: Theme.of(context).primaryColor,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -375,7 +376,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                           fixedSize: const Size(360, 60),
                                           textStyle: const TextStyle(
                                             fontSize: 20,
-                                            fontFamily: 'fonts/Inter-Bold.ttf',
+                                            fontFamily: 'Itim',
                                           ),
                                           foregroundColor: Theme.of(context)
                                               .appBarTheme
@@ -398,6 +399,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                           text: 'Sudah punya akun? ',
                                           style: TextStyle(
                                             fontSize: 16,
+                                            fontFamily: 'Itim',
                                             color:
                                                 Theme.of(context).primaryColor,
                                           ),
@@ -405,6 +407,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
                                         TextSpan(
                                           text: 'Masuk',
                                           style: TextStyle(
+                                            fontFamily: 'Itim',
                                             color:
                                                 Theme.of(context).primaryColor,
                                             decoration:
@@ -451,7 +454,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
               child: Text(
                 'DAFTAR',
                 style: TextStyle(
-                  fontFamily: 'fonts/Inter-Black.ttf',
+                  fontFamily: 'Itim',
                   color: Theme.of(context).primaryColor,
                   fontSize: 25,
                 ),

@@ -75,7 +75,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        // backgroundColor: Colors.blue.shade50,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: _buildAppBar(size),
         body: SizedBox(
@@ -111,7 +110,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Icons.location_pin,
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      // child: Text('LOKASI SAAT INI'),
                     ),
                   ),
                   FadeInUp(
@@ -132,7 +130,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       child: TextField(
                         readOnly: true,
                         style: TextStyle(
-                          fontFamily: 'fonts/Inter-Black.ttf',
+                          fontFamily: 'Itim',
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: Theme.of(context).primaryColor,
@@ -147,7 +145,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             color: Theme.of(context).iconTheme.color,
                           ),
                           hintStyle: TextStyle(
-                            fontFamily: 'fonts/Inter-Black.ttf',
+                            fontFamily: 'Itim',
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             color: Theme.of(context).primaryColor,
@@ -184,12 +182,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ),
                           controller: tabController,
                           labelColor: Theme.of(context).primaryColor,
-                          unselectedLabelColor:
-                              Theme.of(context).appBarTheme.backgroundColor,
+                          unselectedLabelColor: Colors.grey,
                           isScrollable: true,
                           indicatorSize: TabBarIndicatorSize.label,
-                          indicator: const CircleTabBarIndicator(
-                            color: Color.fromARGB(255, 63, 141, 219),
+                          indicator: CircleTabBarIndicator(
+                            color: Theme.of(context).primaryColor,
                             radius: 4,
                           ),
                           tabs: [
@@ -198,10 +195,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8, horizontal: 20),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
+                                  color: Theme.of(context).canvasColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: const Text('pantai'),
+                                child: const Text(
+                                  'pantai',
+                                  style: TextStyle(fontFamily: 'Itim'),
+                                ),
                               ),
                             ),
                             Tab(
@@ -209,10 +209,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8, horizontal: 20),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
+                                  color: Theme.of(context).canvasColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: const Text('gunung'),
+                                child: const Text(
+                                  'gunung',
+                                  style: TextStyle(fontFamily: 'Itim'),
+                                ),
                               ),
                             ),
                             Tab(
@@ -220,10 +223,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8, horizontal: 20),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
+                                  color: Theme.of(context).canvasColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: const Text('danau'),
+                                child: const Text(
+                                  'danau',
+                                  style: TextStyle(fontFamily: 'Itim'),
+                                ),
                               ),
                             ),
                             Tab(
@@ -231,10 +237,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8, horizontal: 20),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
+                                  color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: const Text('perkotaan'),
+                                child: const Text(
+                                  'perkotaan',
+                                  style: TextStyle(fontFamily: 'Itim'),
+                                ),
                               ),
                             ),
                           ],

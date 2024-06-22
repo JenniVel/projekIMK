@@ -7,7 +7,8 @@ import 'package:path/path.dart' as path;
 
 class UploadService {
   static final FirebaseFirestore _database = FirebaseFirestore.instance;
-  static final CollectionReference _DestinationsCollection = _database.collection('Destinations');
+  static final CollectionReference _DestinationsCollection =
+      _database.collection('Destinations');
   static final FirebaseStorage _storage = FirebaseStorage.instance;
 
   // Method to upload an image to Firebase Storage
@@ -44,6 +45,7 @@ class UploadService {
       'created_at': FieldValue.serverTimestamp(),
       'updated_at': FieldValue.serverTimestamp(),
       'isFavorite': false,
+      'rating': wisata.rating,
     };
     await _DestinationsCollection.add(newDestination);
   }
@@ -61,6 +63,7 @@ class UploadService {
       'created_at': wisata.createdAt,
       'updated_at': FieldValue.serverTimestamp(),
       'isFavorite': false,
+      'rating': wisata.rating,
     };
 
     await _DestinationsCollection.doc(wisata.id).update(updatedDestination);
@@ -88,18 +91,24 @@ class UploadService {
           harga: data['harga'],
           kategori: data['kategori'],
           imageUrl: data['image_url'],
-          createdAt: data['created_at'] != null ? data['created_at'] as Timestamp : null,
-          updatedAt: data['updated_at'] != null ? data['updated_at'] as Timestamp : null, 
-          latitude: data['latitude'], 
+          createdAt: data['created_at'] != null
+              ? data['created_at'] as Timestamp
+              : null,
+          updatedAt: data['updated_at'] != null
+              ? data['updated_at'] as Timestamp
+              : null,
+          latitude: data['latitude'],
           longitude: data['longitude'],
           isFavorite: data['isFavorite'],
+          rating: data['rating'],
         );
       }).toList();
     });
   }
 
   Future<Wisata> getDestinationById(String id) async {
-    DocumentSnapshot doc = await _database.collection('Destinations').doc(id).get();
+    DocumentSnapshot doc =
+        await _database.collection('Destinations').doc(id).get();
     if (doc.exists) {
       return Wisata.FromFirestore(doc.data() as Map<String, dynamic>, doc.id);
     } else {
@@ -107,7 +116,8 @@ class UploadService {
     }
   }
 
-  Future<void> updateDestinationRating(String DestinationId, double rating) async {
+  Future<void> updateDestinationRating(
+      String DestinationId, double rating) async {
     try {
       await _database.collection('Destinations').doc(DestinationId).update({
         'rating': rating,
@@ -118,9 +128,11 @@ class UploadService {
   }
 
   // Method to add a comment to a destination
-  static Future<void> addComment(String destinationId, String comment, String userId) async {
+  static Future<void> addComment(
+      String destinationId, String comment, String userId) async {
     // Reference to the comments sub-collection for a specific destination
-    CollectionReference commentsCollection = _DestinationsCollection.doc(destinationId).collection('Comments');
+    CollectionReference commentsCollection =
+        _DestinationsCollection.doc(destinationId).collection('Comments');
 
     // Map representing the comment data
     Map<String, dynamic> newComment = {
@@ -136,6 +148,8 @@ class UploadService {
   // Method to retrieve comments for a specific destination
   static Future<QuerySnapshot> getComments(String destinationId) {
     // Get all comments from the comments sub-collection for the specified destination
-    return _DestinationsCollection.doc(destinationId).collection('Comments').get();
+    return _DestinationsCollection.doc(destinationId)
+        .collection('Comments')
+        .get();
   }
 }

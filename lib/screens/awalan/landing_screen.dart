@@ -31,13 +31,7 @@ class _LandingScreenState extends State<LandingScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xffB4DBFE), Colors.white],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        color: Theme.of(context).appBarTheme.backgroundColor,
         child: Center(
           child: Image.asset(
             'images/logo.gif',

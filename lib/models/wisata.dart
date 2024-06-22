@@ -5,6 +5,7 @@ class Wisata {
   final String name;
   final String description;
   final String harga;
+  double? rating;
   final String kategori;
   final double latitude;
   final double longitude;
@@ -13,13 +14,14 @@ class Wisata {
   Timestamp? createdAt;
   Timestamp? updatedAt;
 
-  Wisata( {
+  Wisata({
     this.id,
     required this.name,
     required this.description,
     required this.harga,
+    required this.rating,
     required this.kategori,
-    required this.latitude, 
+    required this.latitude,
     required this.longitude,
     required this.isFavorite,
     this.imageUrl,
@@ -34,13 +36,14 @@ class Wisata {
       name: data['name'],
       description: data['description'],
       harga: data['harga'],
+      rating: data['rating'],
       kategori: data['kategori'],
       latitude: data['latitude'],
       longitude: data['longitude'],
       imageUrl: data['image_url'],
       createdAt: data['created_at'] as Timestamp,
-      updatedAt: data['updated_at'] as Timestamp, 
-      isFavorite: data['isFavorite'], 
+      updatedAt: data['updated_at'] as Timestamp,
+      isFavorite: data['isFavorite'],
     );
   }
 
@@ -48,14 +51,15 @@ class Wisata {
     return {
       'name': name,
       'description': description,
-      'harga' : harga,
-      'kategori' : kategori,
-      'latitude' : latitude,
+      'harga': harga,
+      'kategori': kategori,
+      'latitude': latitude,
       'longitude': longitude,
       'image_url': imageUrl,
       'created_at': createdAt,
       'updated_at': updatedAt,
-      'isFavorite': isFavorite
+      'isFavorite': isFavorite,
+      'rating': rating,
     };
   }
 
@@ -70,8 +74,9 @@ class Wisata {
       longitude: data['longitude'],
       imageUrl: data['image_url'],
       createdAt: data['created_at'] as Timestamp,
-      updatedAt: data['updated_at'] as Timestamp, 
-      isFavorite: data['isFavorite'], 
+      updatedAt: data['updated_at'] as Timestamp,
+      isFavorite: data['isFavorite'],
+      rating: data['rating'],
     );
   }
 
@@ -79,14 +84,15 @@ class Wisata {
     return {
       'name': name,
       'description': description,
-      'harga' : harga,
-      'kategori' : kategori,
-      'latitude' : latitude,
+      'harga': harga,
+      'kategori': kategori,
+      'latitude': latitude,
       'longitude': longitude,
       'image_url': imageUrl,
       'created_at': createdAt,
       'updated_at': updatedAt,
-      'isFavorite': isFavorite
+      'isFavorite': isFavorite,
+      'rating': rating
     };
   }
 }

@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:projek/models/wisata.dart';
 import 'package:projek/services/upload_service.dart';
 
@@ -25,11 +25,11 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
   File? _imageFile;
+  double? _rating = 0.0;
   Position? _currentPosition;
   final _formKey = GlobalKey<FormState>();
 
   final List<String> _kategori = ['pantai', 'gunung', 'danau', 'perkotaan'];
-
   String? _selectedKategori;
 
   @override
@@ -42,6 +42,7 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
       _selectedKategori = widget.wisata!.kategori;
       _latitudeController.text = widget.wisata!.latitude.toString();
       _longitudeController.text = widget.wisata!.longitude.toString();
+      _rating = widget.wisata!.rating ?? 0.0;
     }
   }
 
@@ -79,8 +80,14 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(
+          Icons.arrow_back,
+          color: Theme.of(context).primaryColor,
+        ),
         title: Text(
-            widget.wisata == null ? 'Add Destination' : 'Update Destination'),
+          widget.wisata == null ? 'Add Destination' : 'Update Destination',
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -91,7 +98,7 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Nama Destinasi: ',
+                  'Nama Destinasi : ',
                   textAlign: TextAlign.start,
                 ),
                 TextFormField(
@@ -106,7 +113,7 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                 const Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Text(
-                    'Deskripsi: ',
+                    'Deskripsi : ',
                   ),
                 ),
                 TextFormField(
@@ -123,7 +130,7 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                 const Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Text(
-                    'Harga: ',
+                    'Harga : ',
                   ),
                 ),
                 TextFormField(
@@ -237,6 +244,28 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                   onPressed: _pickImage,
                   child: const Text('Pick Image'),
                 ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Rating: ',
+                  ),
+                ),
+                RatingBar.builder(
+                  initialRating: _rating ?? 0,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {
+                    setState(() {
+                      _rating = rating;
+                    });
+                  },
+                ),
                 const SizedBox(height: 32),
                 Row(
                   children: [
@@ -266,11 +295,15 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                             double longitude = 0.0;
 
                             if (_latitudeController.text.isNotEmpty) {
-                              latitude = double.tryParse(_latitudeController.text) ?? 0.0;
+                              latitude =
+                                  double.tryParse(_latitudeController.text) ??
+                                      0.0;
                             }
 
                             if (_longitudeController.text.isNotEmpty) {
-                              longitude = double.tryParse(_longitudeController.text) ?? 0.0;
+                              longitude =
+                                  double.tryParse(_longitudeController.text) ??
+                                      0.0;
                             }
 
                             final destination = Wisata(
@@ -278,10 +311,11 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                               name: _nameController.text,
                               description: _descriptionController.text,
                               harga: _hargaController.text,
-                               kategori: _selectedKategori ?? '',
+                              kategori: _selectedKategori ?? '',
                               imageUrl: imageUrl ?? '',
                               latitude: latitude,
                               longitude: longitude,
+                              rating: _rating!,
                               createdAt: widget.wisata?.createdAt,
                               isFavorite: false,
                             );
@@ -289,7 +323,8 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
                             if (widget.wisata == null) {
                               await UploadService.addDestination(destination);
                             } else {
-                              await UploadService.updateDestination(destination);
+                              await UploadService.updateDestination(
+                                  destination);
                             }
                             Navigator.of(context).pop();
                           } catch (e) {

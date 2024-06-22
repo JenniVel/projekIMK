@@ -19,8 +19,9 @@ class _UploadDialogState extends State<UploadDialog> {
   final TextEditingController _hargaController = TextEditingController();
   final TextEditingController _kategoriController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
-   final TextEditingController _longitudeController = TextEditingController();
+  final TextEditingController _longitudeController = TextEditingController();
   File? _imageFile;
+  final double _rating = 0.0;
   // Position? _currentPosition;
   // String? _currentAddress;
 
@@ -59,7 +60,8 @@ class _UploadDialogState extends State<UploadDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.wisata == null ? 'Add Destination' : 'Update Destination'),
+      title: Text(
+          widget.wisata == null ? 'Add Destination' : 'Update Destination'),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -79,7 +81,7 @@ class _UploadDialogState extends State<UploadDialog> {
           TextField(
             controller: _descriptionController,
           ),
-           const Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 20),
             child: Text(
               'Harga: ',
@@ -124,7 +126,8 @@ class _UploadDialogState extends State<UploadDialog> {
                   ? Image.file(_imageFile!, fit: BoxFit.cover)
                   : (widget.wisata?.imageUrl != null &&
                           Uri.parse(widget.wisata!.imageUrl!).isAbsolute
-                      ? Image.network(widget.wisata!.imageUrl!, fit: BoxFit.cover)
+                      ? Image.network(widget.wisata!.imageUrl!,
+                          fit: BoxFit.cover)
                       : Container())),
           TextButton(
             onPressed: _pickImage,
@@ -164,10 +167,11 @@ class _UploadDialogState extends State<UploadDialog> {
               harga: _hargaController.text,
               kategori: _kategoriController.text,
               imageUrl: imageUrl,
-              createdAt: widget.wisata?.createdAt, 
+              createdAt: widget.wisata?.createdAt,
               latitude: double.tryParse(_latitudeController.text) ?? 0.0,
               longitude: double.tryParse(_longitudeController.text) ?? 0.0,
               isFavorite: false,
+              rating: _rating,
             );
 
             if (widget.wisata == null) {

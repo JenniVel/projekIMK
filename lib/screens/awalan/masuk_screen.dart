@@ -169,7 +169,7 @@ class _MasukScreenState extends State<MasukScreen> {
                                 Text(
                                   'Email',
                                   style: TextStyle(
-                                    fontFamily: 'fonts/Inter-Black.ttf',
+                                    fontFamily: 'Itim',
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -182,7 +182,7 @@ class _MasukScreenState extends State<MasukScreen> {
                                   decoration: InputDecoration(
                                     hintText: "Email",
                                     labelStyle: TextStyle(
-                                      fontFamily: 'fonts/Inter-Bold.ttf',
+                                      fontFamily: 'Itim',
                                       color: Theme.of(context).primaryColor,
                                       fontWeight: FontWeight.w300,
                                     ),
@@ -203,7 +203,7 @@ class _MasukScreenState extends State<MasukScreen> {
                                 Text(
                                   'Kata Sandi',
                                   style: TextStyle(
-                                    fontFamily: 'fonts/Inter-Black.ttf',
+                                    fontFamily: 'Itim',
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -219,7 +219,7 @@ class _MasukScreenState extends State<MasukScreen> {
                                         ? _errorText
                                         : null,
                                     labelStyle: const TextStyle(
-                                      fontFamily: 'fonts/Inter-Bold.ttf',
+                                      fontFamily: 'Itim',
                                       color: Color(0xFF4583DF),
                                     ),
                                     border: OutlineInputBorder(
@@ -265,8 +265,7 @@ class _MasukScreenState extends State<MasukScreen> {
                                           text: TextSpan(
                                             text: 'Ingat saya',
                                             style: TextStyle(
-                                              fontFamily:
-                                                  'fonts/Inter-Black.ttf',
+                                              fontFamily: 'Itim',
                                               color: Theme.of(context)
                                                   .primaryColor,
                                               fontWeight: FontWeight.bold,
@@ -281,6 +280,7 @@ class _MasukScreenState extends State<MasukScreen> {
                                       text: TextSpan(
                                         text: 'Lupa kata sandi?',
                                         style: TextStyle(
+                                          fontFamily: 'Itim',
                                           color: Theme.of(context).primaryColor,
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -307,16 +307,16 @@ class _MasukScreenState extends State<MasukScreen> {
                                         fixedSize: const Size(360, 60),
                                         textStyle: const TextStyle(
                                           fontSize: 20,
-                                          fontFamily: 'fonts/Inter-Bold.ttf',
+                                          fontFamily: 'Itim',
                                         ),
                                         backgroundColor: Theme.of(context)
                                             .floatingActionButtonTheme
                                             .backgroundColor,
                                         shape: const StadiumBorder()),
                                     child: Text(
-                                      "MASUK",
+                                      "Masuk",
                                       style: TextStyle(
-                                        fontFamily: 'fonts/Inter-Black.ttf',
+                                        fontFamily: 'Lato',
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context).primaryColor,
@@ -327,31 +327,31 @@ class _MasukScreenState extends State<MasukScreen> {
                                 const SizedBox(height: 20),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 25.0),
+                                      horizontal: 10),
                                   child: Row(
                                     children: [
                                       Expanded(
                                         child: Divider(
-                                          thickness: 0.5,
-                                          color: Colors.grey[400],
+                                          thickness: 1,
+                                          color: Theme.of(context).primaryColor,
                                         ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 10.0),
+                                            horizontal: 10),
                                         child: Text(
                                           'Or continue with',
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              fontFamily: 'Itim',
+                                              fontSize: 15),
                                         ),
                                       ),
                                       Expanded(
                                         child: Divider(
-                                          thickness: 0.5,
-                                          color: Theme.of(context)
-                                              .scaffoldBackgroundColor,
+                                          thickness: 1,
+                                          color: Theme.of(context).primaryColor,
                                         ),
                                       ),
                                     ],
@@ -375,12 +375,14 @@ class _MasukScreenState extends State<MasukScreen> {
                                       text: 'Tidak Punya Akun? ',
                                       style: TextStyle(
                                         fontSize: 16,
+                                        fontFamily: 'Itim',
                                         color: Theme.of(context).primaryColor,
                                       ),
                                       children: [
                                         TextSpan(
                                           text: 'Daftar',
                                           style: TextStyle(
+                                            fontFamily: 'Itim',
                                             color:
                                                 Theme.of(context).primaryColor,
                                             decoration:
@@ -428,7 +430,7 @@ class _MasukScreenState extends State<MasukScreen> {
                 child: Text(
                   'MASUK',
                   style: TextStyle(
-                    fontFamily: 'fonts/Inter-Black.ttf',
+                    fontFamily: 'Itim',
                     color: Theme.of(context).primaryColor,
                     fontSize: 25,
                   ),
