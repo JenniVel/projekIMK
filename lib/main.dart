@@ -8,7 +8,6 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:projek/firebase_options.dart';
 import 'package:projek/screens/awalan/landing_screen.dart';
 import 'package:projek/screens/home/home_screen.dart';
-import 'package:projek/tema/theme_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:projek/tema/light_theme.dart';
 import 'package:projek/tema/dark_theme.dart';
@@ -64,7 +63,6 @@ class MainApp extends StatelessWidget {
             routes: {
               '/daftar': (context) => const DaftarScreen(),
               '/masuk': (context) => const MasukScreen(),
-              '/tema': (context) => const TemaPage(),
             },
           );
         },
