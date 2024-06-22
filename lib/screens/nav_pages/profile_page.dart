@@ -6,8 +6,9 @@ import 'package:projek/screens/awalan/masuk_screen.dart';
 import 'package:projek/screens/awalan/reset_password.dart';
 import 'package:projek/screens/widgets/box.dart';
 import 'package:projek/screens/widgets/text_box.dart';
-import 'package:projek/tema/theme_screen.dart';
-import 'package:projek/services/profile_service.dart'; // Import the new service
+import 'package:projek/tema/theme_notifier.dart';
+import 'package:projek/services/profile_service.dart';
+import 'package:provider/provider.dart'; // Import the new service
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({super.key});
@@ -269,13 +270,20 @@ class _ProfilPageState extends State<ProfilPage> {
                     ),
                   ),
                 ),
-                ListTile(
-                  leading: Icon(Icons.color_lens, color: theme.iconTheme.color),
-                  title: Text('Tema', style: TextStyle(color: textColor)),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TemaPage()),
+                Consumer<ThemeNotifier>(
+                  builder: (context, themeNotifier, child) {
+                    return ListTile(
+                      leading:
+                          Icon(Icons.color_lens, color: theme.iconTheme.color),
+                      title: Text(
+                        themeNotifier.currentTheme == ThemeMode.light
+                            ? 'Dark Mode'
+                            : 'Light Mode',
+                        style: TextStyle(color: textColor),
+                      ),
+                      onTap: () {
+                        themeNotifier.toggleTheme();
+                      },
                     );
                   },
                 ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projek/komponen/like_button.dart';
-import 'package:projek/screens/home/review/review_list_screen.dart';
 import 'package:projek/services/favorite_service.dart';
 import 'package:projek/screens/home/google_maps_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -129,9 +128,29 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       extendBodyBehindAppBar: true,
-      appBar: _buildAppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Container(
+          margin: const EdgeInsets.all(8), 
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              size: 24,
+              color: Colors.black,
+            ),
+          ),
+        ),
+      ),
       body: wisata == null
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SizedBox(
               width: size.width,
               height: size.height,
@@ -166,7 +185,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       height: size.height * 0.65,
                       decoration: BoxDecoration(
                         color: Theme.of(context).scaffoldBackgroundColor,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
                         ),
@@ -214,7 +233,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     color: Theme.of(context).iconTheme.color,
                                     size: 20,
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   AppText(
                                     text: "\Rp. " + wisata!.harga,
                                     size: 20,
@@ -316,29 +335,6 @@ class _DetailsPageState extends State<DetailsPage> {
                 ],
               ),
             ),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(Icons.arrow_back_ios, size: 30,),
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ReviewListScreen(destinationsTitle: wisata!.name);
-            }));
-          },
-          icon: const Icon(Icons.reviews, size: 30,),
-        ),
-      ],
     );
   }
 }

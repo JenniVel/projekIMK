@@ -50,6 +50,23 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Google Maps'),
+        leading: Container(
+          margin: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              size: 24,
+              color: Colors.black,
+            ),
+          ),
+        ),
       ),
       body: GoogleMap(
         myLocationEnabled: true,

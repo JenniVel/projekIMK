@@ -41,7 +41,7 @@ class WisataList extends StatelessWidget {
                   final document = data[index];
                   return FadeInUp(
                     delay: Duration(
-                        milliseconds: index * 100), // Stagger animations
+                        milliseconds: index * 100), 
                     child: Card(
                       child: InkWell(
                         onTap: () {
@@ -67,12 +67,11 @@ class WisataList extends StatelessWidget {
                                       height: 100.0,
                                     ),
                                   )
-                                : Container(), // Handle cases where image URL is not available
+                                : Container(), 
                             const SizedBox(
                                 width:
-                                    10.0), // Add spacing between image and text
+                                    10.0), 
                             Expanded(
-                              // Text takes remaining space
                               child: ListTile(
                                 title: Text(document.name,
                                     style: const TextStyle(fontSize: 18)),

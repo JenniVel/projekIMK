@@ -193,12 +193,50 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             radius: 4,
                           ),
                           tabs: [
-                            const Tab(child: Text('pantai')),
-                            const Tab(child: Text('gunung')),
-                            const Tab(child: Text('danau')),
-                            const Tab(
-                                child: Text(
-                                    'perkotaan')), // Add more tabs for other categories
+                            Tab(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: const Text('pantai'),
+                              ),
+                            ),
+                            Tab(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: const Text('gunung'),
+                              ),
+                            ),
+                            Tab(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: const Text('danau'),
+                              ),
+                            ),
+                            Tab(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: const Text('perkotaan'),
+                              ),
+                            ),
                           ],
                           onTap: (index) {
                             String category;
