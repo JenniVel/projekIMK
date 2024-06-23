@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -253,7 +251,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               child: Row(
                                 children: [
                                   RatingBarIndicator(
-                                    rating: _rating,
+                                    rating: wisata!.rating ?? 0,
                                     itemBuilder: (context, index) => const Icon(
                                       Icons.star,
                                       color: Colors.amber,
@@ -265,7 +263,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    _rating.toString(),
+                                    wisata!.rating.toString(),
                                     style: TextStyle(
                                       fontSize: 20,
                                       color: Theme.of(context).primaryColor,
