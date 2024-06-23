@@ -366,12 +366,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               padding: const EdgeInsets.only(right: 5),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MainWrapper(user: widget.user!),
-                    ),
-                  );
+                  if (widget.user != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainWrapper(user: widget.user!),
+                      ),
+                    );
+                  }
                 },
                 child: const CircleAvatar(
                   radius: 30,

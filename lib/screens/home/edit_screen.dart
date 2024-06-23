@@ -80,9 +80,15 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Theme.of(context).primaryColor,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_rounded,
+            size: 24,
+            color: Colors.black,
+          ),
         ),
         title: Text(
           widget.wisata == null ? 'Add Destination' : 'Update Destination',
