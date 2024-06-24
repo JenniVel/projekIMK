@@ -84,10 +84,10 @@ class _DestinationEditScreenState extends State<DestinationEditScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(
+          icon:  Icon(
             Icons.arrow_back_rounded,
             size: 24,
-            color: Colors.black,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         title: Text(
